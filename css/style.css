@@ -551,6 +551,46 @@ body {
   border-color: var(--border);
 }
 
+/* 공유 그리드 */
+.share-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.share-icon-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.share-icon-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  background: var(--card2);
+}
+
+.share-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.share-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text2);
+  text-align: center;
+}
+
 /* 다시하기 */
 .retry-btn {
   width: 100%;

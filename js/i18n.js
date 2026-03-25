@@ -22,7 +22,11 @@ const I18N = {
     shareTitle: '공유하기',
     shareCopyBtn: '링크 복사',
     shareCopied: '복사됨!',
-    shareKakao: '카카오톡으로 공유',
+    shareKakao: '카카오톡',
+    shareLine: 'LINE',
+    shareWhatsApp: 'WhatsApp',
+    shareTwitter: 'X (Twitter)',
+    shareFacebook: 'Facebook',
     shareMore: '더 보기',
 
     // 상대방 테스트 링크
@@ -64,7 +68,11 @@ const I18N = {
     shareTitle: 'Share',
     shareCopyBtn: 'Copy Link',
     shareCopied: 'Copied!',
-    shareKakao: 'Share on KakaoTalk',
+    shareKakao: 'KakaoTalk',
+    shareLine: 'LINE',
+    shareWhatsApp: 'WhatsApp',
+    shareTwitter: 'X (Twitter)',
+    shareFacebook: 'Facebook',
     shareMore: 'More',
 
     // 상대방 테스트 링크

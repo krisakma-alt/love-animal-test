@@ -276,17 +276,27 @@ function renderShareButtons(emoji, name) {
   document.getElementById('send-to-partner-btn').onclick = () =>
     sendToPartner(myAnimal, emoji, name, currentLang);
 
-  document.getElementById('share-kakao-btn').textContent = t.shareKakao;
+  // 플랫폼별 버튼
+  document.getElementById('share-kakao-btn').querySelector('.share-label').textContent = t.shareKakao;
   document.getElementById('share-kakao-btn').onclick = () => shareKakao(name, emoji, currentLang);
 
-  document.getElementById('share-copy-btn').textContent = t.shareCopyBtn;
+  document.getElementById('share-line-btn').querySelector('.share-label').textContent = t.shareLine;
+  document.getElementById('share-line-btn').onclick = () => shareLine(name, emoji, currentLang);
+
+  document.getElementById('share-whatsapp-btn').querySelector('.share-label').textContent = t.shareWhatsApp;
+  document.getElementById('share-whatsapp-btn').onclick = () => shareWhatsApp(name, emoji, currentLang);
+
+  document.getElementById('share-twitter-btn').querySelector('.share-label').textContent = t.shareTwitter;
+  document.getElementById('share-twitter-btn').onclick = () => shareTwitter(name, emoji, currentLang);
+
+  document.getElementById('share-facebook-btn').querySelector('.share-label').textContent = t.shareFacebook;
+  document.getElementById('share-facebook-btn').onclick = () => shareFacebook(currentLang);
+
+  document.getElementById('share-copy-label').textContent = t.shareCopyBtn;
   document.getElementById('share-copy-btn').onclick = () => {
     const url = buildShareUrl(currentLang, myAnimal);
     copyToClipboard(url, currentLang);
   };
-
-  document.getElementById('share-more-btn').textContent = t.shareMore;
-  document.getElementById('share-more-btn').onclick = () => shareGeneral(name, emoji, currentLang);
 }
 
 // ── 언어 토글 ─────────────────────────────────────

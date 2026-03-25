@@ -122,18 +122,36 @@
 
       <!-- 공유 섹션 -->
       <div class="share-section">
-        <div class="share-buttons">
-          <button id="send-to-partner-btn" class="share-btn share-btn-partner">
-            상대방에게 테스트 보내기 💌
+        <!-- 상대방 보내기 (메인 액션) -->
+        <button id="send-to-partner-btn" class="share-btn share-btn-partner">
+          상대방에게 테스트 보내기 💌
+        </button>
+
+        <!-- 플랫폼별 공유 그리드 -->
+        <div class="share-grid">
+          <button id="share-kakao-btn" class="share-icon-btn kakao">
+            <span class="share-icon">💬</span>
+            <span class="share-label">카카오톡</span>
           </button>
-          <button id="share-kakao-btn" class="share-btn share-btn-kakao">
-            카카오톡으로 공유
+          <button id="share-line-btn" class="share-icon-btn line">
+            <span class="share-icon">🟢</span>
+            <span class="share-label">LINE</span>
           </button>
-          <button id="share-copy-btn" class="share-btn share-btn-copy">
-            🔗 링크 복사
+          <button id="share-whatsapp-btn" class="share-icon-btn whatsapp">
+            <span class="share-icon">📱</span>
+            <span class="share-label">WhatsApp</span>
           </button>
-          <button id="share-more-btn" class="share-btn share-btn-more">
-            ··· 더 보기
+          <button id="share-twitter-btn" class="share-icon-btn twitter">
+            <span class="share-icon">🐦</span>
+            <span class="share-label">X</span>
+          </button>
+          <button id="share-facebook-btn" class="share-icon-btn facebook">
+            <span class="share-icon">📘</span>
+            <span class="share-label">Facebook</span>
+          </button>
+          <button id="share-copy-btn" class="share-icon-btn copy">
+            <span class="share-icon">🔗</span>
+            <span id="share-copy-label" class="share-label">링크 복사</span>
           </button>
         </div>
       </div>
