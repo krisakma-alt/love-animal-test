@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f0f1a" />
+
+  <title>나의 연애 동물은?</title>
+  <meta name="description" content="8가지 질문으로 알아보는 나의 연애 유형 — 64가지 궁합 분석 포함" />
+
+  <!-- OG 태그 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="나의 연애 동물은?" />
+  <meta property="og:description" content="8가지 연애 상황 질문으로 알아보는 나의 연애 유형 — 64가지 궁합 분석 포함" />
+  <meta property="og:image" content="/og/og-default.png" />
+  <meta property="og:url" content="" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="나의 연애 동물은?" />
+  <meta name="twitter:description" content="8가지 연애 상황 질문으로 알아보는 나의 연애 유형" />
+  <meta name="twitter:image" content="/og/og-default.png" />
+
+  <!-- 카카오 JavaScript SDK -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+    integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+    crossorigin="anonymous"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Favicon (이모지) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦁</text></svg>" />
+</head>
+<body>
+
+<div class="app-wrapper">
+
+  <!-- 헤더 -->
+  <header class="header">
+    <span class="logo" onclick="retryTest()">💘 Love Animal</span>
+    <div class="lang-toggle">
+      <button id="lang-ko">한국어</button>
+      <button id="lang-en">EN</button>
+    </div>
+  </header>
+
+  <!-- ── 화면 1: 인트로 ─────────────────────────── -->
+  <div id="screen-intro" class="screen">
+    <section class="intro-section">
+      <div class="intro-animals">🦁🐈🐕🦊</div>
+      <h1 id="intro-title" class="intro-title">나의 연애 동물은?</h1>
+      <p id="intro-tagline" class="intro-tagline">나는 연애할 때 어떤 동물일까?</p>
+      <p id="intro-desc" class="intro-desc">8가지 질문으로 알아보는 나의 연애 유형</p>
+      <button id="start-btn" class="start-btn" onclick="startTest()">테스트 시작하기</button>
+      <div class="intro-animals-list">
+        <span class="intro-animal-chip">🦁 사자</span>
+        <span class="intro-animal-chip">🐈 고양이</span>
+        <span class="intro-animal-chip">🐕 개</span>
+        <span class="intro-animal-chip">🦊 여우</span>
+        <span class="intro-animal-chip">🐆 치타</span>
+        <span class="intro-animal-chip">🐢 거북이</span>
+        <span class="intro-animal-chip">🦉 부엉이</span>
+        <span class="intro-animal-chip">🦔 고슴도치</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── 화면 2: 퀴즈 ───────────────────────────── -->
+  <div id="screen-quiz" class="screen">
+    <section class="quiz-section">
+      <!-- 진행률 -->
+      <div class="progress-area">
+        <div class="progress-header">
+          <span id="progress-text" class="progress-text">1 / 8</span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- 질문 -->
+      <h2 id="question-text" class="question-text"></h2>
+
+      <!-- 선택지 -->
+      <div id="options-container" class="options-container"></div>
+    </section>
+  </div>
+
+  <!-- ── 화면 3: 결과 ───────────────────────────── -->
+  <div id="screen-result" class="screen">
+    <section class="result-section">
+
+      <!-- 나의 동물 카드 -->
+      <div class="my-animal-card">
+        <p id="result-title" class="result-title">나의 연애 동물은</p>
+        <span id="result-emoji" class="result-emoji"></span>
+        <h2 id="result-name" class="result-name"></h2>
+        <div id="result-keywords" class="result-keywords"></div>
+        <p id="result-desc" class="result-desc"></p>
+      </div>
+
+      <!-- 궁합 섹션 -->
+      <div class="compat-section">
+        <h3 id="compat-title" class="section-title">지금 마음이 있는 상대는?</h3>
+        <p id="compat-desc" class="section-desc">상대방의 연애 동물을 선택하면 두 사람의 관계를 분석해드릴게요</p>
+        <div id="compat-grid" class="compat-grid"></div>
+        <div id="compat-result-box" class="compat-result-box"></div>
+      </div>
+
+      <!-- 공유 섹션 -->
+      <div class="share-section">
+        <div class="share-buttons">
+          <button id="share-kakao-btn" class="share-btn share-btn-kakao">
+            카카오톡으로 공유
+          </button>
+          <button id="share-copy-btn" class="share-btn share-btn-copy">
+            🔗 링크 복사
+          </button>
+          <button id="share-more-btn" class="share-btn share-btn-more">
+            ··· 더 보기
+          </button>
+        </div>
+      </div>
+
+      <!-- 다시하기 -->
+      <button id="retry-btn" class="retry-btn" onclick="retryTest()">
+        다시 테스트하기
+      </button>
+
+    </section>
+  </div>
+
+</div><!-- /app-wrapper -->
+
+<!-- JS — 순서 중요: 데이터 → 유틸 → 앱 -->
+<script src="js/animals.js"></script>
+<script src="js/combinations.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/share.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
