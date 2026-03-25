@@ -1,24 +1,17 @@
-// 한국어 / 영어 UI 텍스트 관리
+// 한국어 / 영어 / 일본어 / 스페인어 / 인도네시아어 UI 텍스트 관리
 const I18N = {
   ko: {
-    // 인트로
     siteTitle: '나의 연애 동물은?',
     siteDesc: '8가지 질문으로 알아보는 나의 연애 유형',
     startBtn: '테스트 시작하기',
     tagline: '나는 연애할 때 어떤 동물일까?',
-
-    // 테스트 진행
     questionOf: (cur, total) => `${cur} / ${total}`,
     progressLabel: '진행 중',
-
-    // 결과 - 나의 유형
     resultTitle: '나의 연애 동물은',
     resultKeywords: '특징',
     compatTitle: '지금 마음이 있는 상대는?',
     compatDesc: '상대방의 연애 동물을 선택하면 두 사람의 관계를 분석해드릴게요',
     compatResultTitle: '두 사람의 관계',
-
-    // 공유
     shareTitle: '공유하기',
     shareCopyBtn: '링크 복사',
     shareCopied: '복사됨!',
@@ -28,8 +21,6 @@ const I18N = {
     shareTwitter: 'X (Twitter)',
     shareFacebook: 'Facebook',
     shareMore: '더 보기',
-
-    // 상대방 테스트 링크
     sendToPartnerBtn: '상대방에게 테스트 보내기 💌',
     partnerBanner: (emoji, name) => `${emoji} ${name}가 테스트 링크를 보냈어요!`,
     partnerBannerDesc: '테스트를 완료하면 두 사람의 궁합을 바로 확인할 수 있어요',
@@ -37,34 +28,24 @@ const I18N = {
     partnerCompatAuto: (emoji, name) => `링크를 보낸 사람 — ${emoji} ${name}`,
     partnerCompatAutoDesc: '두 사람의 궁합 결과예요',
     sendToPartnerText: (emoji, name) => `나는 ${emoji} ${name}! 너는 무슨 동물인지 테스트해봐 👇`,
-
-    // 다시하기
     retryBtn: '다시 테스트하기',
     shareResultText: (animal) => `나의 연애 동물은 ${animal}! 너는?`,
-
-    // OG / 메타
     ogTitle: (animal) => `나의 연애 동물은 ${animal}`,
     ogDesc: '8가지 연애 상황 질문으로 알아보는 나의 연애 유형 — 64가지 궁합 분석 포함',
   },
+
   en: {
-    // 인트로
     siteTitle: "What's Your Love Animal?",
     siteDesc: '8 questions to reveal your love personality',
     startBtn: 'Start the Test',
     tagline: 'Find out which animal you are in love',
-
-    // 테스트 진행
     questionOf: (cur, total) => `${cur} of ${total}`,
     progressLabel: 'in progress',
-
-    // 결과 - 나의 유형
     resultTitle: 'Your Love Animal Is',
     resultKeywords: 'Traits',
     compatTitle: "Who's on your mind right now?",
     compatDesc: 'Pick their love animal to see how you two match up',
     compatResultTitle: 'Your Relationship Dynamic',
-
-    // 공유
     shareTitle: 'Share',
     shareCopyBtn: 'Copy Link',
     shareCopied: 'Copied!',
@@ -74,8 +55,6 @@ const I18N = {
     shareTwitter: 'X (Twitter)',
     shareFacebook: 'Facebook',
     shareMore: 'More',
-
-    // 상대방 테스트 링크
     sendToPartnerBtn: 'Send Test to Partner 💌',
     partnerBanner: (emoji, name) => `${emoji} ${name} sent you this test!`,
     partnerBannerDesc: 'Complete the test to instantly see your compatibility',
@@ -83,24 +62,128 @@ const I18N = {
     partnerCompatAuto: (emoji, name) => `The person who sent this — ${emoji} ${name}`,
     partnerCompatAutoDesc: 'Here\'s your relationship dynamic',
     sendToPartnerText: (emoji, name) => `I'm ${emoji} ${name}! Find out what animal you are 👇`,
-
-    // 다시하기
     retryBtn: 'Retake the Test',
     shareResultText: (animal) => `My love animal is ${animal}! What's yours?`,
-
-    // OG / 메타
     ogTitle: (animal) => `My Love Animal Is ${animal}`,
     ogDesc: '8 love scenario questions to discover your relationship personality — includes 64 compatibility results',
+  },
+
+  ja: {
+    siteTitle: '恋愛動物診断',
+    siteDesc: '8つの質問で分かる私の恋愛タイプ',
+    startBtn: '診断スタート',
+    tagline: '恋愛するとき、私はどんな動物？',
+    questionOf: (cur, total) => `${cur} / ${total}`,
+    progressLabel: '進行中',
+    resultTitle: 'あなたの恋愛動物は',
+    resultKeywords: '特徴',
+    compatTitle: '今、気になる相手は？',
+    compatDesc: '相手の恋愛動物を選ぶと、二人の相性を分析します',
+    compatResultTitle: '二人の関係性',
+    shareTitle: 'シェア',
+    shareCopyBtn: 'リンクをコピー',
+    shareCopied: 'コピーしました!',
+    shareKakao: 'カカオトーク',
+    shareLine: 'LINE',
+    shareWhatsApp: 'WhatsApp',
+    shareTwitter: 'X (Twitter)',
+    shareFacebook: 'Facebook',
+    shareMore: 'その他',
+    sendToPartnerBtn: '気になる相手に送る 💌',
+    partnerBanner: (emoji, name) => `${emoji} ${name}がテストリンクを送りました！`,
+    partnerBannerDesc: 'テストを完了すると二人の相性がすぐに確認できます',
+    partnerStartBtn: '私の動物を調べる',
+    partnerCompatAuto: (emoji, name) => `リンクを送った人 — ${emoji} ${name}`,
+    partnerCompatAutoDesc: '二人の相性結果です',
+    sendToPartnerText: (emoji, name) => `私は${emoji} ${name}！あなたは何の動物か診断してみて 👇`,
+    retryBtn: 'もう一度診断する',
+    shareResultText: (animal) => `私の恋愛動物は${animal}！あなたは？`,
+    ogTitle: (animal) => `私の恋愛動物は${animal}`,
+    ogDesc: '8つの恋愛シナリオ質問で分かる私の恋愛タイプ — 64通りの相性分析付き',
+  },
+
+  es: {
+    siteTitle: '¿Cuál es tu Animal del Amor?',
+    siteDesc: '8 preguntas para revelar tu personalidad amorosa',
+    startBtn: 'Comenzar el Test',
+    tagline: 'Descubre qué animal eres en el amor',
+    questionOf: (cur, total) => `${cur} de ${total}`,
+    progressLabel: 'en progreso',
+    resultTitle: 'Tu Animal del Amor Es',
+    resultKeywords: 'Rasgos',
+    compatTitle: '¿En quién estás pensando ahora?',
+    compatDesc: 'Elige su animal del amor para ver cómo encajan',
+    compatResultTitle: 'Tu Dinámica de Pareja',
+    shareTitle: 'Compartir',
+    shareCopyBtn: 'Copiar enlace',
+    shareCopied: '¡Copiado!',
+    shareKakao: 'KakaoTalk',
+    shareLine: 'LINE',
+    shareWhatsApp: 'WhatsApp',
+    shareTwitter: 'X (Twitter)',
+    shareFacebook: 'Facebook',
+    shareMore: 'Más',
+    sendToPartnerBtn: 'Enviar Test a mi Pareja 💌',
+    partnerBanner: (emoji, name) => `¡${emoji} ${name} te envió este test!`,
+    partnerBannerDesc: 'Completa el test para ver vuestra compatibilidad al instante',
+    partnerStartBtn: 'Encontrar mi Animal',
+    partnerCompatAuto: (emoji, name) => `La persona que lo envió — ${emoji} ${name}`,
+    partnerCompatAutoDesc: 'Aquí está vuestra dinámica de pareja',
+    sendToPartnerText: (emoji, name) => `¡Soy ${emoji} ${name}! Descubre qué animal eres tú 👇`,
+    retryBtn: 'Repetir el Test',
+    shareResultText: (animal) => `¡Mi animal del amor es ${animal}! ¿Y el tuyo?`,
+    ogTitle: (animal) => `Mi Animal del Amor Es ${animal}`,
+    ogDesc: '8 preguntas de escenarios amorosos para descubrir tu personalidad — incluye 64 resultados de compatibilidad',
+  },
+
+  id: {
+    siteTitle: 'Hewan Cintamu Apa?',
+    siteDesc: '8 pertanyaan untuk mengungkap kepribadian cintamu',
+    startBtn: 'Mulai Tes',
+    tagline: 'Cari tahu hewan apa kamu dalam cinta',
+    questionOf: (cur, total) => `${cur} dari ${total}`,
+    progressLabel: 'sedang berlangsung',
+    resultTitle: 'Hewan Cintamu Adalah',
+    resultKeywords: 'Sifat',
+    compatTitle: 'Siapa yang kamu pikirkan sekarang?',
+    compatDesc: 'Pilih hewan cinta mereka untuk melihat kecocokan kalian',
+    compatResultTitle: 'Dinamika Hubunganmu',
+    shareTitle: 'Bagikan',
+    shareCopyBtn: 'Salin Tautan',
+    shareCopied: 'Disalin!',
+    shareKakao: 'KakaoTalk',
+    shareLine: 'LINE',
+    shareWhatsApp: 'WhatsApp',
+    shareTwitter: 'X (Twitter)',
+    shareFacebook: 'Facebook',
+    shareMore: 'Lainnya',
+    sendToPartnerBtn: 'Kirim Tes ke Pasangan 💌',
+    partnerBanner: (emoji, name) => `${emoji} ${name} mengirimkan tes ini untukmu!`,
+    partnerBannerDesc: 'Selesaikan tes untuk langsung melihat kecocokanmu',
+    partnerStartBtn: 'Temukan Hewanku',
+    partnerCompatAuto: (emoji, name) => `Orang yang mengirim ini — ${emoji} ${name}`,
+    partnerCompatAutoDesc: 'Inilah dinamika hubungan kalian',
+    sendToPartnerText: (emoji, name) => `Aku adalah ${emoji} ${name}! Cari tahu hewan apa kamu 👇`,
+    retryBtn: 'Ulangi Tes',
+    shareResultText: (animal) => `Hewan cintaku adalah ${animal}! Kalau kamu?`,
+    ogTitle: (animal) => `Hewan Cintaku Adalah ${animal}`,
+    ogDesc: '8 pertanyaan skenario cinta untuk menemukan kepribadianmu — termasuk 64 hasil kecocokan',
   }
 };
 
-// 브라우저 언어 자동 감지
+// 브라우저 언어 자동 감지 (5개 언어 지원)
 function detectLang() {
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('lang') === 'en') return 'en';
-  if (urlParams.get('lang') === 'ko') return 'ko';
-  const browserLang = navigator.language || navigator.userLanguage || 'ko';
-  return browserLang.startsWith('ko') ? 'ko' : 'en';
+  const supported = ['ko', 'en', 'ja', 'es', 'id'];
+  const urlLang = urlParams.get('lang');
+  if (supported.includes(urlLang)) return urlLang;
+
+  const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (browserLang.startsWith('ko')) return 'ko';
+  if (browserLang.startsWith('ja')) return 'ja';
+  if (browserLang.startsWith('es')) return 'es';
+  if (browserLang.startsWith('id')) return 'id';
+  return 'en';
 }
 
 // URL에 언어 파라미터 업데이트

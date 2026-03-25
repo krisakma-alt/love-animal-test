@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Animal — 관리자</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f1a;
+      --card: #1e1e30;
+      --card2: #252540;
+      --border: rgba(255,255,255,0.08);
+      --primary: #b06dff;
+      --text: #f0f0f8;
+      --text2: #a0a0c0;
+      --text3: #6868a0;
+      --green: #4caf82;
+      --red: #f06060;
+      --radius: 14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Pretendard', 'Inter', -apple-system, sans-serif;
+      font-size: 15px;
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    h1 span { color: var(--primary); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    /* 폼 */
+    .field { margin-bottom: 12px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--text3);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      padding: 9px 12px;
+      font-family: inherit;
+      outline: none;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus { border-color: var(--primary); }
+    textarea { resize: vertical; min-height: 60px; }
+
+    .hint { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+    .btn-add {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 4px;
+      transition: 0.2s;
+    }
+    .btn-add:hover { opacity: 0.85; }
+    .btn-add:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .msg {
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+    }
+    .msg.ok { background: rgba(76,175,130,0.15); color: var(--green); display: block; }
+    .msg.err { background: rgba(240,96,96,0.1); color: var(--red); display: block; }
+
+    /* 광고 목록 */
+    .ad-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .ad-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .ad-emoji { font-size: 24px; flex-shrink: 0; }
+
+    .ad-info { flex: 1; min-width: 0; }
+    .ad-title { font-size: 14px; font-weight: 700; }
+    .ad-desc { font-size: 12px; color: var(--text2); margin-top: 2px; }
+    .ad-url {
+      font-size: 11px;
+      color: var(--text3);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+      margin-top: 2px;
+    }
+
+    .ad-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    .btn-sm {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text2);
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .btn-sm:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-sm.on { border-color: var(--green); color: var(--green); }
+    .btn-sm.del:hover { border-color: var(--red); color: var(--red); }
+
+    .empty { color: var(--text3); font-size: 14px; text-align: center; padding: 20px 0; }
+    .loading { color: var(--text3); font-size: 13px; text-align: center; padding: 16px 0; }
+  </style>
+</head>
+<body>
+
+<h1>💘 Love Animal <span>관리자</span></h1>
+
+<!-- 광고 목록 -->
+<div class="card">
+  <h2>📋 앱 소개 카드 목록</h2>
+  <div id="ad-list" class="ad-list">
+    <div class="loading">불러오는 중...</div>
+  </div>
+</div>
+
+<!-- 광고 추가 -->
+<div class="card">
+  <h2>➕ 새 앱 소개 추가</h2>
+
+  <div class="field">
+    <label>이모지</label>
+    <input id="f-emoji" type="text" placeholder="🎯" maxlength="4" style="max-width:80px;" />
+  </div>
+
+  <div class="field">
+    <label>앱 이름</label>
+    <input id="f-title" type="text" placeholder="Doclens" />
+  </div>
+
+  <div class="field">
+    <label>한 줄 설명</label>
+    <textarea id="f-desc" placeholder="AI가 문서를 분석하고 관계 유형을 파악해드려요"></textarea>
+  </div>
+
+  <div class="field">
+    <label>링크</label>
+    <input id="f-url" type="url" placeholder="https://..." />
+    <p class="hint">없으면 비워두세요 (곧 출시 카드로 표시)</p>
+  </div>
+
+  <button class="btn-add" id="add-btn" onclick="addAd()">추가하기</button>
+  <div id="add-msg" class="msg"></div>
+</div>
+
+<script>
+const API_READ  = '/api/ads';
+const API_WRITE = '/api/admin/ads';
+
+// ── 목록 로드 ─────────────────────────────────────
+async function loadAds() {
+  const listEl = document.getElementById('ad-list');
+  try {
+    // 전체 목록은 admin용으로 active 포함 전체를 가져와야 하므로
+    // 여기서는 읽기 전용 API 대신 직접 구조를 표시
+    const res = await fetch(API_READ);
+    if (!res.ok) throw new Error('서버 오류');
+    const ads = await res.json();
+    renderList(ads);
+  } catch (e) {
+    listEl.innerHTML = `<div class="empty">불러오기 실패: ${e.message}</div>`;
+  }
+}
+
+function renderList(ads) {
+  const listEl = document.getElementById('ad-list');
+  if (ads.length === 0) {
+    listEl.innerHTML = '<div class="empty">등록된 앱 소개가 없습니다</div>';
+    return;
+  }
+  listEl.innerHTML = ads.map(ad => `
+    <div class="ad-item" id="item-${ad.id}">
+      <span class="ad-emoji">${ad.emoji || '📱'}</span>
+      <div class="ad-info">
+        <div class="ad-title">${esc(ad.title)}</div>
+        <div class="ad-desc">${esc(ad.desc)}</div>
+        <div class="ad-url">${ad.url ? esc(ad.url) : '링크 없음'}</div>
+      </div>
+      <div class="ad-actions">
+        <button class="btn-sm ${ad.active ? 'on' : ''}" onclick="toggle('${ad.id}')">
+          ${ad.active ? 'ON' : 'OFF'}
+        </button>
+        <button class="btn-sm del" onclick="del('${ad.id}')">삭제</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── 추가 ──────────────────────────────────────────
+async function addAd() {
+  const btn = document.getElementById('add-btn');
+  const emoji = document.getElementById('f-emoji').value.trim() || '📱';
+  const title = document.getElementById('f-title').value.trim();
+  const desc  = document.getElementById('f-desc').value.trim();
+  const url   = document.getElementById('f-url').value.trim();
+
+  if (!title || !desc) {
+    showMsg('add-msg', '앱 이름과 설명을 입력해주세요', 'err');
+    return;
+  }
+
+  btn.disabled = true;
+  try {
+    await api({ action: 'add', emoji, title, desc, url });
+    showMsg('add-msg', '추가되었습니다!', 'ok');
+    clearForm();
+    loadAds();
+  } catch (e) {
+    showMsg('add-msg', '실패: ' + e.message, 'err');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// ── 토글 / 삭제 ───────────────────────────────────
+async function toggle(id) {
+  try {
+    await api({ action: 'toggle', id });
+    loadAds();
+  } catch (e) {
+    alert('실패: ' + e.message);
+  }
+}
+
+async function del(id) {
+  if (!confirm('삭제하시겠습니까?')) return;
+  try {
+    await api({ action: 'delete', id });
+    loadAds();
+  } catch (e) {
+    alert('실패: ' + e.message);
+  }
+}
+
+// ── 유틸 ──────────────────────────────────────────
+async function api(body) {
+  const res = await fetch(API_WRITE, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || `HTTP ${res.status}`);
+  }
+  return res.json();
+}
+
+function showMsg(id, text, type) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = 'msg ' + type;
+  setTimeout(() => { el.className = 'msg'; }, 3000);
+}
+
+function clearForm() {
+  ['f-emoji', 'f-title', 'f-desc', 'f-url'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+}
+
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// 초기 로드
+loadAds();
+</script>
+
+</body>
+</html>

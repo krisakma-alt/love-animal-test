@@ -219,6 +219,9 @@ function renderResult() {
 
   // 메타 태그 업데이트
   updateMetaTags(animal.emoji + ' ' + animalData.name);
+
+  // 광고 배너 로드
+  loadAdsFromFirestore(currentLang);
 }
 
 // ── 궁합 동물 그리드 ──────────────────────────────
@@ -249,7 +252,8 @@ function showCompatResult(partnerAnimalId) {
   const combo = COMBINATIONS[`${myAnimal}_${partnerAnimalId}`];
   if (!combo) return;
 
-  const data = combo[currentLang];
+  // ja/es/id는 조합 데이터가 없으면 영어로 폴백
+  const data = combo[currentLang] || combo['en'];
   const partnerAnimal = ANIMALS[partnerAnimalId];
 
   const resultBox = document.getElementById('compat-result-box');
@@ -300,14 +304,14 @@ function renderShareButtons(emoji, name) {
 }
 
 // ── 언어 토글 ─────────────────────────────────────
+const SUPPORTED_LANGS = ['ko', 'en', 'ja', 'es', 'id'];
+
 function setupLangToggle() {
-  const toggleKo = document.getElementById('lang-ko');
-  const toggleEn = document.getElementById('lang-en');
-
   updateLangToggleUI();
-
-  toggleKo.addEventListener('click', () => switchLang('ko'));
-  toggleEn.addEventListener('click', () => switchLang('en'));
+  SUPPORTED_LANGS.forEach(lang => {
+    const btn = document.getElementById(`lang-${lang}`);
+    if (btn) btn.addEventListener('click', () => switchLang(lang));
+  });
 }
 
 function switchLang(lang) {
@@ -330,8 +334,10 @@ function switchLang(lang) {
 }
 
 function updateLangToggleUI() {
-  document.getElementById('lang-ko').classList.toggle('active', currentLang === 'ko');
-  document.getElementById('lang-en').classList.toggle('active', currentLang === 'en');
+  SUPPORTED_LANGS.forEach(lang => {
+    const btn = document.getElementById(`lang-${lang}`);
+    if (btn) btn.classList.toggle('active', currentLang === lang);
+  });
 }
 
 // ── OG 메타 태그 동적 업데이트 ───────────────────
