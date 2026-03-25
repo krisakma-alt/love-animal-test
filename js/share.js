@@ -87,6 +87,36 @@ function buildShareUrl(lang, resultAnimal) {
   return url.toString();
 }
 
+// 상대방에게 테스트 링크 보내기
+function sendToPartner(myAnimalId, emoji, name, lang) {
+  const t = I18N[lang];
+  const url = new URL(window.location.origin + window.location.pathname);
+  url.searchParams.set('from', myAnimalId);
+  url.searchParams.set('lang', lang);
+  const shareText = t.sendToPartnerText(emoji, name);
+
+  if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: shareText,
+        description: t.partnerBannerDesc,
+        imageUrl: `${window.location.origin}/og/og-default.png`,
+        link: { mobileWebUrl: url.toString(), webUrl: url.toString() },
+      },
+      buttons: [{
+        title: lang === 'ko' ? '내 동물 알아보기' : 'Find My Animal',
+        link: { mobileWebUrl: url.toString(), webUrl: url.toString() },
+      }],
+    });
+  } else if (navigator.share) {
+    navigator.share({ title: shareText, text: shareText, url: url.toString() })
+      .catch(() => {});
+  } else {
+    copyToClipboard(url.toString(), lang);
+  }
+}
+
 function showToast(message) {
   const existing = document.querySelector('.toast');
   if (existing) existing.remove();

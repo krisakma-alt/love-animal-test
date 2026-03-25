@@ -5,6 +5,7 @@ let currentLang = 'ko';
 let currentQuestion = 0;
 let scores = {};
 let myAnimal = null;
+let partnerAnimal = null; // ?from=LION 으로 넘어온 상대방 동물
 
 // ── 초기화 ────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,8 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initKakao();
   resetScores();
 
-  // URL에 result 파라미터가 있으면 바로 결과 화면
   const urlParams = new URLSearchParams(window.location.search);
+
+  // ?from=LION — 상대방이 보낸 링크
+  const fromParam = urlParams.get('from');
+  if (fromParam && ANIMALS[fromParam]) {
+    partnerAnimal = fromParam;
+  }
+
+  // ?result=LION — 직접 결과 URL 접근
   const resultParam = urlParams.get('result');
   if (resultParam && ANIMALS[resultParam]) {
     myAnimal = resultParam;
@@ -33,6 +41,7 @@ function resetScores() {
   ANIMAL_ORDER.forEach(a => scores[a] = 0);
   currentQuestion = 0;
   myAnimal = null;
+  // partnerAnimal은 URL에서 오므로 리셋하지 않음
 }
 
 // ── 화면 전환 ─────────────────────────────────────
@@ -51,7 +60,21 @@ function renderIntro() {
   document.getElementById('intro-title').textContent = t.siteTitle;
   document.getElementById('intro-tagline').textContent = t.tagline;
   document.getElementById('intro-desc').textContent = t.siteDesc;
-  document.getElementById('start-btn').textContent = t.startBtn;
+
+  // 상대방이 보낸 링크로 접근한 경우 배너 표시
+  const banner = document.getElementById('partner-banner');
+  if (partnerAnimal && ANIMALS[partnerAnimal]) {
+    const pa = ANIMALS[partnerAnimal];
+    banner.querySelector('.partner-banner-text').textContent =
+      t.partnerBanner(pa.emoji, pa[currentLang].name);
+    banner.querySelector('.partner-banner-desc').textContent = t.partnerBannerDesc;
+    banner.style.display = 'block';
+    document.getElementById('start-btn').textContent = t.partnerStartBtn;
+  } else {
+    banner.style.display = 'none';
+    document.getElementById('start-btn').textContent = t.startBtn;
+  }
+
   updateMetaTags();
 }
 
@@ -174,6 +197,20 @@ function renderResult() {
   document.getElementById('compat-desc').textContent = t.compatDesc;
   renderCompatGrid();
 
+  // 상대방 링크로 접근한 경우 → 자동으로 궁합 표시
+  if (partnerAnimal && ANIMALS[partnerAnimal]) {
+    const pa = ANIMALS[partnerAnimal];
+    // 파트너 배너 표시
+    const autoBanner = document.getElementById('partner-compat-banner');
+    autoBanner.querySelector('.partner-compat-label').textContent =
+      t.partnerCompatAuto(pa.emoji, pa[currentLang].name);
+    autoBanner.querySelector('.partner-compat-sublabel').textContent =
+      t.partnerCompatAutoDesc;
+    autoBanner.style.display = 'block';
+    // 궁합 자동 선택
+    setTimeout(() => showCompatResult(partnerAnimal), 300);
+  }
+
   // 공유 버튼
   renderShareButtons(animal.emoji, animalData.name);
 
@@ -233,6 +270,11 @@ function showCompatResult(partnerAnimalId) {
 // ── 공유 버튼 렌더 ────────────────────────────────
 function renderShareButtons(emoji, name) {
   const t = I18N[currentLang];
+
+  // 상대방에게 테스트 보내기
+  document.getElementById('send-to-partner-btn').textContent = t.sendToPartnerBtn;
+  document.getElementById('send-to-partner-btn').onclick = () =>
+    sendToPartner(myAnimal, emoji, name, currentLang);
 
   document.getElementById('share-kakao-btn').textContent = t.shareKakao;
   document.getElementById('share-kakao-btn').onclick = () => shareKakao(name, emoji, currentLang);

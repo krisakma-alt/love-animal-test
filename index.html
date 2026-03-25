@@ -48,6 +48,12 @@
   <!-- ── 화면 1: 인트로 ─────────────────────────── -->
   <div id="screen-intro" class="screen">
     <section class="intro-section">
+      <!-- 상대방이 보낸 링크 배너 -->
+      <div id="partner-banner" class="partner-banner" style="display:none;">
+        <p class="partner-banner-text"></p>
+        <p class="partner-banner-desc"></p>
+      </div>
+
       <div class="intro-animals">🦁🐈🐕🦊</div>
       <h1 id="intro-title" class="intro-title">나의 연애 동물은?</h1>
       <p id="intro-tagline" class="intro-tagline">나는 연애할 때 어떤 동물일까?</p>
@@ -100,6 +106,12 @@
         <p id="result-desc" class="result-desc"></p>
       </div>
 
+      <!-- 상대방 링크로 접근 시 자동 궁합 배너 -->
+      <div id="partner-compat-banner" class="partner-compat-banner" style="display:none;">
+        <p class="partner-compat-label"></p>
+        <p class="partner-compat-sublabel"></p>
+      </div>
+
       <!-- 궁합 섹션 -->
       <div class="compat-section">
         <h3 id="compat-title" class="section-title">지금 마음이 있는 상대는?</h3>
@@ -111,6 +123,9 @@
       <!-- 공유 섹션 -->
       <div class="share-section">
         <div class="share-buttons">
+          <button id="send-to-partner-btn" class="share-btn share-btn-partner">
+            상대방에게 테스트 보내기 💌
+          </button>
           <button id="share-kakao-btn" class="share-btn share-btn-kakao">
             카카오톡으로 공유
           </button>

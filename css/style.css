@@ -571,6 +571,66 @@ body {
   border-color: var(--text3);
 }
 
+/* ── 상대방 배너 (인트로) ───────────────────────── */
+.partner-banner {
+  background: linear-gradient(135deg, rgba(255,126,179,0.15), rgba(176,109,255,0.15));
+  border: 1px solid rgba(255,126,179,0.4);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  text-align: center;
+  animation: fadeUp 0.4s ease;
+}
+
+.partner-banner-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.partner-banner-desc {
+  font-size: 13px;
+  color: var(--text3);
+}
+
+/* ── 상대방 자동 궁합 배너 (결과 화면) ─────────── */
+.partner-compat-banner {
+  background: linear-gradient(135deg, rgba(255,204,112,0.15), rgba(255,126,179,0.15));
+  border: 1px solid rgba(255,204,112,0.4);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeUp 0.4s ease;
+}
+
+.partner-compat-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent2);
+  margin-bottom: 2px;
+}
+
+.partner-compat-sublabel {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+/* ── 상대방 보내기 버튼 ─────────────────────────── */
+.share-btn-partner {
+  background: linear-gradient(135deg, rgba(255,126,179,0.2), rgba(176,109,255,0.2));
+  border-color: rgba(255,126,179,0.5);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.share-btn-partner:hover {
+  background: linear-gradient(135deg, rgba(255,126,179,0.3), rgba(176,109,255,0.3));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255,126,179,0.2);
+}
+
 /* ── 토스트 ─────────────────────────────────────── */
 .toast {
   position: fixed;

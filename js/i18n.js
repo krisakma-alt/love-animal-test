@@ -25,6 +25,15 @@ const I18N = {
     shareKakao: '카카오톡으로 공유',
     shareMore: '더 보기',
 
+    // 상대방 테스트 링크
+    sendToPartnerBtn: '상대방에게 테스트 보내기 💌',
+    partnerBanner: (emoji, name) => `${emoji} ${name}가 테스트 링크를 보냈어요!`,
+    partnerBannerDesc: '테스트를 완료하면 두 사람의 궁합을 바로 확인할 수 있어요',
+    partnerStartBtn: '내 동물 알아보기',
+    partnerCompatAuto: (emoji, name) => `링크를 보낸 사람 — ${emoji} ${name}`,
+    partnerCompatAutoDesc: '두 사람의 궁합 결과예요',
+    sendToPartnerText: (emoji, name) => `나는 ${emoji} ${name}! 너는 무슨 동물인지 테스트해봐 👇`,
+
     // 다시하기
     retryBtn: '다시 테스트하기',
     shareResultText: (animal) => `나의 연애 동물은 ${animal}! 너는?`,
@@ -57,6 +66,15 @@ const I18N = {
     shareCopied: 'Copied!',
     shareKakao: 'Share on KakaoTalk',
     shareMore: 'More',
+
+    // 상대방 테스트 링크
+    sendToPartnerBtn: 'Send Test to Partner 💌',
+    partnerBanner: (emoji, name) => `${emoji} ${name} sent you this test!`,
+    partnerBannerDesc: 'Complete the test to instantly see your compatibility',
+    partnerStartBtn: 'Find My Animal',
+    partnerCompatAuto: (emoji, name) => `The person who sent this — ${emoji} ${name}`,
+    partnerCompatAutoDesc: 'Here\'s your relationship dynamic',
+    sendToPartnerText: (emoji, name) => `I'm ${emoji} ${name}! Find out what animal you are 👇`,
 
     // 다시하기
     retryBtn: 'Retake the Test',
