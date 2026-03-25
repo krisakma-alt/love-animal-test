@@ -1,7 +1,7 @@
 // 공유 기능 — 카카오톡 + LINE + WhatsApp + X + 클립보드
 
 // 카카오 앱 키 (배포 후 본인 앱 키로 교체 필요)
-const KAKAO_APP_KEY = 'YOUR_KAKAO_APP_KEY_HERE';
+const KAKAO_APP_KEY = 'a3d9feea9f88674ad21c83bd3cb30498';
 
 function initKakao() {
   if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
