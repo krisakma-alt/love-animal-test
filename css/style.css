@@ -807,3 +807,38 @@ body {
   .intro-title { font-size: 34px; }
   .result-emoji { font-size: 96px; }
 }
+
+/* ── 영리봇 홍보 배너 ────────────────────────────── */
+.youngribot-banner {
+  display: block;
+  margin: 24px 0 8px;
+  padding: 24px 20px;
+  background: linear-gradient(135deg, #7b5ea7 0%, #9b6fd4 50%, #b06dff 100%);
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.2s;
+}
+.youngribot-banner:hover { opacity: 0.9; }
+.youngribot-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.youngribot-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.youngribot-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: #fff;
+  color: #7b5ea7;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
